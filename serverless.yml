@@ -1,0 +1,62 @@
+service: ${env:REKOGNITION_COLLECTION_ID}
+
+provider:
+  name: aws
+  runtime: nodejs6.10
+  stage: dev
+  region: us-east-1
+  environment:
+    TWITTER_CONSUMER_KEY: ${env:TWITTER_CONSUMER_KEY}
+    TWITTER_CONSUMER_SECRET: ${env:TWITTER_CONSUMER_SECRET}
+    TWITTER_ACCESS_TOKEN_KEY: ${env:TWITTER_ACCESS_TOKEN_KEY}
+    TWITTER_ACCESS_TOKEN_SECRET: ${env:TWITTER_ACCESS_TOKEN_SECRET}
+    BUCKET_NAME: ${env:BUCKET_NAME}
+    REKOGNITION_COLLECTION_ID: ${env:REKOGNITION_COLLECTION_ID}
+    AWS_ACCOUNT_ID: ${env:AWS_ACCOUNT_ID}
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - s3:getObject
+        - s3:putObject
+      Resource: 
+        - "arn:aws:s3:::${env:BUCKET_NAME}"
+        - "arn:aws:s3:::${env:BUCKET_NAME}/*"
+    - Effect: "Allow"
+      Resource: "arn:aws:rekognition:us-east-1:${env:AWS_ACCOUNT_ID}:collection/${env:REKOGNITION_COLLECTION_ID}/*"
+      Action:
+        - "rekognition:*"
+
+plugins:
+  - serverless-offline
+  - serverless-apigw-binary
+
+functions:
+  scrap:
+    handler: index.scrap
+    events:
+      - schedule: cron(30 * * * ? *)
+  indexFaces:
+    handler: index.indexFaces
+    events:
+      - s3:
+          bucket: ${env:BUCKET_NAME}
+          event: s3:ObjectCreated:*
+  deleteFaces:
+    handler: index.deleteFaces
+    events:
+      - s3:
+          bucket: ${env:BUCKET_NAME}
+          event: s3:ObjectRemoved:*
+  initial:
+    handler: index.initialIndexFaces
+  matchFaces:
+    handler: api.matchFaces
+    events:
+      - http:
+          path: match_faces
+          method: post
+
+custom:
+  apigwBinary:
+    types:
+      - 'image/jpeg'

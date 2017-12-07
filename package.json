@@ -1,0 +1,29 @@
+{
+  "name": "imasgirls-image-scraping",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "sls": "serverless",
+    "deploy": "serverless deploy",
+    "exec": "serverless invoke -f scrap",
+    "local": "serverless invoke local -f scrap",
+    "initial": "serverless invoke local -f initial",
+    "test": "mocha"
+  },
+  "keywords": [],
+  "author": "nomura.keiichi",
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^4.0.1",
+    "serverless": "^1.24.1",
+    "serverless-apigw-binary": "^0.4.4",
+    "serverless-offline": "^3.16.0"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.164.0",
+    "axios": "^0.17.1",
+    "twitter": "^1.7.1"
+  }
+}

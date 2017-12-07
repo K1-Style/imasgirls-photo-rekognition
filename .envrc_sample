@@ -1,0 +1,16 @@
+# Please set this environment valiables.
+
+# For use Twitter API
+export TWITTER_CONSUMER_KEY=
+export TWITTER_CONSUMER_SECRET=
+export TWITTER_ACCESS_TOKEN_KEY=
+export TWITTER_ACCESS_TOKEN_SECRET=
+
+# For S3 Bucket Name (image scrap)
+export BUCKET_NAME=imasgirls-photo-scrap
+
+# For Rekognition Collection id
+export REKOGNITION_COLLECTION_ID=imasgirls-photo
+
+# AWS IAM Account
+export AWS_ACCOUNT_ID=123456789012

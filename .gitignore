@@ -1,0 +1,14 @@
+.vscode
+.envrc
+.DS_Store
+
+node_modules
+npm-debug.log
+
+# imas関連
+images
+.tweet_since_id
+*.test
+
+# serverless関連
+.serverless
