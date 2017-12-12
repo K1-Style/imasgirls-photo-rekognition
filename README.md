@@ -80,3 +80,7 @@ $ curl -H "Content-Type: image/jpeg" --data-binary "@<画像ファイルパス>"
 `ExternalImageId`がS3で保存された元の写真ファイル名となります。
 その他のレスポンス情報については公式のドキュメントを参考にしてみてください。
 http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/Rekognition.html#searchFacesByImage-property
+
+## ライセンス
+
+[LICENSE](./LICENSE)
