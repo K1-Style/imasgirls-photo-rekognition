@@ -2,7 +2,7 @@
 
 ## 関連ブログ記事
 
-[[アイマス駆動開発]アイマスガールズの顔写真分析機能を作っている](https://k1-style.net/2017/12/imasgirls_photo_rekognition_serverless/)
+[[アイマス駆動開発]アイマスガールズの顔写真分析機能をサーバーレス開発](https://k1-style.net/2017/12/imasgirls_photo_rekognition_serverless/)
 
 ## 全体像
 
